@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devidu's Photography Gallery</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #f3f4f6;
+            background-color: #000;
+            /* Ensures smooth scrolling to anchor links */
+            scroll-behavior: smooth;
+        }
+
+        .dark-section {
+            background-color: #000;
+            color: #f3f4f6;
+        }
+
+        .darker-section {
+            background-color: #000;
+            color: #f3f4f6;
+        }
+
+        /* Fixed navigation bar with transparency and blur */
+        .fixed-nav {
+            background-color: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Keyframes for the pulsing glow effect on the button */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* Animations for sections on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Portfolio item hover effect */
+        .portfolio-item-link:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item-link:hover .overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item-link img, .portfolio-item-link .overlay {
+            transition: all 0.5s ease;
+        }
+
+        .portfolio-item-link .overlay {
+            opacity: 0;
+        }
+
+        /* Lightbox styling */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .lightbox-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        /* --- IMPORTANT: Fix for cropped images --- */
+        .lightbox-image {
+            display: block;
+            width: auto;
+            height: auto;
+            /* Ensures the entire image is visible without being cropped */
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain; 
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        /* ------------------------------------------- */
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+            z-index: 1001;
+        }
+
+        .lightbox-close:hover {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-bla-900">
+
+    <!-- Fixed Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-all duration-300">
+        <div class="w-full flex justify-between items-center mb-4 md:mb-0">
+            <div class="text-3xl font-bold">DK</div>
+            <!-- This is the hamburger menu icon for mobile -->
+            <button id="menu-toggle" class="md:hidden text-white">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- The navigation links and social icons are now in a separate div -->
+        <div id="nav-links" class="hidden w-full md:flex md:flex-row md:justify-between md:items-center">
+            <nav class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-sm md:mr-8">
+                <!-- Link back to the main website's home page -->
+                <a href="index.html" class="hover:text-red-500 transition-colors">Home</a>
+                <a href="services.html" class="hover:text-red-500 transition-colors">Services</a>
+                <a href="galary.html" class="hover:text-red-500 transition-colors">Bussness</a>
+                <a href="#" class="hover:text-red-500 transition-colors font-bold text-red-500">Gallery</a>
+                <a href="contact.html" class="hover:text-red-500 transition-colors">Contact</a>
+            </nav>
+            <div class="flex space-x-4 text-gray-400 mt-4 md:mt-0">
+                <a href="https://www.facebook.com/share/1PTR4jbvTV/" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/devidu-kaveesha-1a3351218/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/devidu_kaveesha?utm_source=qr&igsh=MTNlYnprNjJjbHNvMw==" class="hover:instagram" ><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spacer to prevent content from being hidden by the fixed nav bar. -->
+    <div class="h-20 md:h-24"></div>
+
+    <!-- Photo Gallery Grid Section -->
+    <section id="gallery-grid" class="dark-section pt-8 px-8 pb-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 animate-on-scroll">
+            <!-- Photo Item 1 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('1.jpg')">
+                <img src="1.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 2 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('2.jpg')">
+                <img src="2.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 3 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('3.jpg')">
+                <img src="3.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 4 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('4.jpg')">
+                <img src="4.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 5 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('5.jpg')">
+                <img src="5.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 6 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('6.jpg')">
+                <img src="6.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 7 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('7.jpg')">
+                <img src="7.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+            <!-- Photo Item 8 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link cursor-pointer" onclick="openLightbox('8.jpg')">
+                <img src="8.jpg" alt="" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Container -->
+    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-container">
+            <img id="lightbox-image" class="lightbox-image" src="" alt="Full-screen view of the photograph">
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="darker-section py-8 text-center text-gray-400 text-sm">
+        <p>
+            &copy; <span id="current-year"></span> Devidu Kaveesha. All Rights Reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Update the year in the footer dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Intersection Observer for scroll-based animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Toggle the visibility of the nav links on mobile
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                if (navLinks.classList.contains('hidden')) {
+                    navLinks.classList.remove('hidden');
+                    navLinks.classList.add('flex', 'flex-col');
+                } else {
+                    navLinks.classList.add('hidden');
+                    navLinks.classList.remove('flex', 'flex-col');
+                }
+            });
+        });
+
+        /**
+         * Opens the lightbox with the specified image URL.
+         * @param {string} imageUrl - The URL of the image to display.
+         */
+        function openLightbox(imageUrl) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            // Set the image source
+            lightboxImage.src = imageUrl;
+            // Activate the lightbox
+            lightbox.classList.add('active');
+        }
+
+        /**
+         * Closes the lightbox.
+         * @param {Event} event - The event object to check if the click was on the overlay.
+         */
+        function closeLightbox(event) {
+            const lightbox = document.getElementById('lightbox');
+            // Check if the click was on the overlay or the close button
+            if (event.target === lightbox || event.target.classList.contains('lightbox-close')) {
+                lightbox.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

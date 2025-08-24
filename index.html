@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devidu Kaveesha </title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #f3f4f6;
+            background-color: #000;
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            color: #f3f4f6;
+        }
+
+        .darker-section {
+            background-color: #2d2d2d;
+            color: #f3f4f6;
+        }
+
+        /* Custom style for the background image section */
+        .hero-section {
+            position: relative;
+            /* Updated background image source to your uploaded file */
+            background-image: url('1000497107.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Hero section with a dark vignette effect */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            /* Create a radial gradient for the vignette effect */
+            background: radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: 0;
+        }
+
+        /* Keyframes for the pulsing glow effect on the button */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* Hero content fade and slide up animation */
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: hero-fade-in 1s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes hero-fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* The main content within the hero section needs a higher z-index to be on top of the overlay */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* CSS for the scroll animation on sections and cards */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* New animations for buttons and boxes */
+        .animated-button {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .animated-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+        }
+
+        /* The container for the animated box that is also a link */
+        .animated-box-link {
+            display: block; /* Make the entire link a block to wrap the content */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* The hover effect is now applied to the link itself */
+        .animated-box-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Portfolio image hover effect */
+        .portfolio-item-link:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item-link:hover .overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item-link img, .portfolio-item-link .overlay {
+            transition: all 0.5s ease;
+        }
+
+        .portfolio-item-link .overlay {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-black-900">
+
+    <!-- Fixed Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-all duration-300">
+        <div class="w-full flex justify-between items-center mb-4 md:mb-0">
+            <div class="text-3xl font-bold">DK</div>
+            <!-- This is the hamburger menu icon for mobile -->
+            <button id="menu-toggle" class="md:hidden text-white">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- The navigation links and social icons are now in a separate div -->
+        <div id="nav-links" class="hidden w-full md:flex md:flex-row md:justify-between md:items-center">
+            <nav class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-sm md:mr-8">
+                <a href="#" class="hover:text-red-500 transition-colors font-bold text-red-500">Home</a>
+                <a href="services.html" class="hover:text-red-500 transition-colors">Services</a>
+                <a href="galary.html" class="hover:text-red-500 transition-colors">Business</a>
+                <a href="photography.html" class="hover:text-red-500 transition-colors">Galary</a>
+                <a href="contact.html" class="hover:text-red-500 transition-colors">Contact</a>
+            </nav>
+            <div class="flex space-x-4 text-gray-400 mt-4 md:mt-0">
+                <a href="https://www.facebook.com/share/1PTR4jbvTV/" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/devidu-kaveesha-1a3351218/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/devidu_kaveesha?utm_source=qr&igsh=MTNlYnprNjJjbHNvMw==" class="hover:instagram" ><i class="fab fa-instagram"></i></a>
+                <!--  <a href="#" class="hover:youtube" ><i class="fab fa-youtube"></i></a>  -->
+            </div>
+        </div>
+    </div>
+
+    <!-- This is a spacer to prevent content from being hidden by the fixed navigation bar. -->
+    <div class="h-20 md:h-24"></div>
+
+    <!-- Main Hero Section (Dark Theme) -->
+    <header class="hero-section text-white flex flex-col justify-between py-12 md:py-24 px-8 min-h-screen">
+        <!-- Removed the `hero-overlay` class as it's now handled by CSS pseudo-element -->
+        <div class="hero-content flex flex-col items-start mt-24">
+            <h1 class="text-5xl md:text-7xl font-bold max-w-lg mb-4">
+                I am Devidu Kaveesha
+            </h1>
+            <h2 class="text-xl md:text-2xl text-gray-400 mb-6">
+                Creative, Tech & Business Entrepreneur
+            </h2>
+            <div class="flex space-x-4">
+                <!-- Added `animated-button` class for hover effect -->
+                <a href="#about" class="px-6 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-colors animated-button" style="animation: pulse-glow 2s infinite;">
+                    Know More
+                </a>
+                <a href="galary.html" class="px-6 py-3 border border-gray-400 text-gray-400 rounded-full font-bold hover:text-white hover:border-white transition-colors animated-button">
+                    See My Work
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section (Dark Theme) -->
+    <main class="darker-section py-20 px-8">
+        <!-- Added `animate-on-scroll` class for the entire section -->
+        <section id="about" class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center animate-on-scroll">
+            <div>
+                <h2 class="text-4xl font-bold text-white mb-4">About Me</h2>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    I’m Devidu Kaveesha, born on 12th October 2006. At 6’4” tall, I’m someone who blends creativity, technology, and business into my life. I currently manage Geeth Bags, and I’m also the founder of ALL HALL while preparing to launch my next brand, Popzy, in 2026.
+                    <br><br>
+                    Beyond business, I run two channels – D Dash Gamer for gaming and R3D SHADE for music. My passions include gaming, music production, photo/video editing, and web development. I enjoy challenges, growth, and creativity, and chess is my favorite sport to sharpen my mind.                </p>
+
+                <!-- More visible Businesses section with links -->
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold text-red-600 mb-2">Businesses</h3>
+                    <ul class="space-y-3">
+                        <li class="text-xl font-bold text-white">
+                            <a href="https://wa.me/94768653486?text=Hello%2C%20I%27m%20From%20your%20Website" target="_blank" class="hover:text-red-600 transition-colors">ALL HALL</a><span class="text-gray-300 font-normal">: Founder & Owner</span>
+                        </li>
+                        <li class="text-xl font-bold text-white">
+                            <a href="popzy.html" target="_blank" class="hover:text-red-600 transition-colors">Popzy</a><span class="text-gray-300 font-normal">: Upcoming in 2026</span>
+                        </li>
+                        <li class="text-xl font-bold text-white">
+                            <a href="https://wa.me/94766726228?text=Hello%2C%20I%27m%20From%20your%20Website" target="_blank" class="hover:text-red-600 transition-colors">Geeth Bags</a><span class="text-gray-300 font-normal">: Manager</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- More visible Channels section with links -->
+                <div class="mt-8">
+                    <h3 class="text-2xl font-bold text-red-600 mb-2">Channels</h3>
+                    <ul class="space-y-3">
+                        <li class="text-xl font-bold text-white">
+                            <a href="https://youtube.com/@ddashgame?si=ZEKwKy7BkXv1pAu7" target="_blank" class="hover:text-red-600 transition-colors">D DASH GAMER</a><span class="text-gray-300 font-normal">: Gaming</span>
+                        </li>
+                        <li class="text-xl font-bold text-white">
+                            <a href="https://youtube.com/@r3dshade?si=DqVyuLyyaT1_qNMv" target="_blank" class="hover:text-red-600 transition-colors">R3D SHADE</a><span class="text-gray-300 font-normal">: Music</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div>
+                <!-- Image of Devidu Kaveesha, updated with your uploaded image -->
+                <img src="pic.jpg" alt="A professional portrait of Devidu Kaveesha." class="w-full h-auto rounded-xl shadow-lg mb-8 animate-on-scroll">
+
+                <!-- Skills Section with a more descriptive list -->
+                <h3 class="text-2xl font-bold text-white mb-4">Skills & Interests</h3>
+                <ul class="space-y-2 text-lg text-gray-300">
+                    <li class="flex items-center"><i class="fa-solid fa-gamepad mr-2 text-red-600"></i> Gaming</li>
+                    <li class="flex items-center"><i class="fa-solid fa-music mr-2 text-red-600"></i> Music Producing</li>
+                    <li class="flex items-center"><i class="fa-solid fa-image mr-2 text-red-600"></i> Photo Editing</li>
+                    <li class="flex items-center"><i class="fa-solid fa-video mr-2 text-red-600"></i> Video Editing</li>
+                    <li class="flex items-center"><i class="fa-solid fa-laptop-code mr-2 text-red-600"></i> Website Development</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Services Section (Dark Theme) -->
+    <section id="services" class="dark-section py-20 px-8 text-center">
+    <h2 class="text-4xl font-bold mb-4">Services I Provide</h2>
+    <p class="text-gray-100 mb-12">Here are some of the things I can do.</p>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <a href="services.html" class="bg-black p-8 rounded-lg shadow-lg animate-on-scroll animated-box-link border-2 border-white">
+            <i class="fa-solid fa-code text-4xl text-red-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Website Development</h3>
+            <p class="text-gray-400">I can build a website like this one for you.</p>
+        </a>
+        <a href="services.html" class="bg-black p-8 rounded-lg shadow-lg animate-on-scroll animated-box-link border-2 border-white">
+            <i class="fa-solid fa-pen-nib text-4xl text-red-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Logo Making</h3>
+            <p class="text-gray-400">Professional logo design to build your brand identity.</p>
+        </a>
+        <a href="services.html" class="bg-black p-8 rounded-lg shadow-lg animate-on-scroll animated-box-link border-2 border-white">
+            <i class="fa-solid fa-images text-4xl text-red-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Banner Making</h3>
+            <p class="text-gray-400">Eye-catching banner designs for websites and social media.</p>
+        </a>
+    </div>
+</section>
+
+    <!-- Portfolio Section (Dark Theme) -->
+    <section id="portfolio" class="darker-section py-20 px-8 text-center">
+        <!-- Added `animate-on-scroll` for the entire section -->
+        <h2 class="text-4xl font-bold text-white mb-4">My Portfolio</h2>
+        <p class="text-gray-300 mb-12">A selection of my best work.</p>
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 animate-on-scroll">
+            <!-- Portfolio Item 1 - Updated with your uploaded image -->
+            <a href="https://wa.me/94768653486?text=Hello%2C%20I%27m%20From%20your%20Website" class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link">
+                <img src="ALL HALL.jpg" alt="ALL HALL" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold">ALL HALL</span>
+                </div>
+            </a>
+            <!-- Portfolio Item 2 - Updated with your uploaded image -->
+            <a href="https://youtube.com/@r3dshade?si=DqVyuLyyaT1_qNMv" class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link">
+                <img src="r3d shade.jpg" alt="R3D SHADE" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold">R3D SHADE</span>
+                </div>
+            </a>
+            <!-- Portfolio Item 3 - Updated with your uploaded image -->
+            <a href="https://wa.me/94766726228?text=Hello%2C%20I%27m%20From%20your%20Website" class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link">
+                <img src="geeth bags.png" alt="geeth bags" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold">GEETH BGAS</span>
+                </div>
+            </a>
+            <!-- Portfolio Item 4 - Updated with your uploaded image -->
+            <a href="photography.html" class="group relative overflow-hidden rounded-xl shadow-lg portfolio-item-link">
+                <img src="IMG_20241020_113632.jpg" alt="Photography" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                    <span class="text-white text-lg font-bold">Photography</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section (Dark Theme) -->
+    <section id="contact" class="dark-section py-20 px-8">
+        <!-- Added `animate-on-scroll` for the entire section -->
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start animate-on-scroll">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">Contact Info</h2>
+                <p class="text-gray-400 mb-6">
+                    Feel free to reach out to me for any inquiries or collaborations.
+                </p>
+                <div class="space-y-3">
+                    <p class="flex items-center space-x-3 text-gray-400">
+                        <i class="fa-solid fa-phone text-red-500"></i>
+                        <span>+94 76 86 53 486</span>
+                    </p>
+                    <p class="flex items-center space-x-3 text-gray-400">
+                        <i class="fa-solid fa-envelope text-red-500"></i>
+                        <span>devidukaveesha@gmail.com</span>
+                    </p>
+                    <p class="flex items-center space-x-3 text-gray-400">
+                        <i class="fa-solid fa-location-dot text-red-500"></i>
+                        <span>Horana, Sri Lanka</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Contact Form (Corrected) -->
+            <form id="contact-form" action="https://formspree.io/f/mgvlwypq" method="POST" class="w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <!-- Added 'name' attribute -->
+                    <input type="text" name="name" placeholder="Your Name" class="p-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 animated-box">
+                    <!-- Added 'name' attribute for email reply -->
+                    <input type="email" name="_replyto" placeholder="Your Email" class="p-3 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 animated-box">
+                </div>
+                <!-- Added 'name' attribute -->
+                <input type="text" name="subject" placeholder="Subject" class="w-full p-3 bg-gray-700 text-white rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-red-500 animated-box">
+                <!-- Added 'name' attribute -->
+                <textarea rows="6" name="message" placeholder="Your Message" class="w-full p-3 bg-gray-700 text-white rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-red-500 animated-box"></textarea>
+                <button type="submit" class="w-full px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg animated-button">
+                    Send Message
+                </button>
+            </form>
+            <!-- A confirmation message that will be shown after successful submission -->
+            <div id="success-message" class="hidden mt-6 p-4 bg-green-500 text-white rounded-lg text-center font-bold">
+                Thank you! Your message has been sent successfully.
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll-based animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null, // use the viewport as the root
+                rootMargin: '0px',
+                threshold: 0.1 // trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Fix: Changed 'is-visible' to 'isIntersecting' for correct Intersection Observer check
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing after it's visible
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Toggle the visibility of the nav links on mobile
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                if (navLinks.classList.contains('hidden')) {
+                    navLinks.classList.remove('hidden');
+                    navLinks.classList.add('flex', 'flex-col');
+                } else {
+                    navLinks.classList.add('hidden');
+                    navLinks.classList.remove('flex', 'flex-col');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

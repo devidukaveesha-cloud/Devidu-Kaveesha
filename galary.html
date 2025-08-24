@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devidu Kaveesha - Gallery</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #f3f4f6;
+            /* Added background image styles */
+            background-image: url('1000497107.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .dark-section {
+            background-color: #1a1a1a;
+            color: #f3f4f6;
+        }
+
+        .darker-section {
+            background-color: #2d2d2d;
+            color: #f3f4f6;
+        }
+
+        /* Reusing animation classes for consistency */
+        .animated-button {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .animated-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+        }
+
+        .animated-box-link {
+            display: block;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .animated-box-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Scroll animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-all duration-300">
+        <div class="w-full flex justify-between items-center mb-4 md:mb-0">
+            <div class="text-3xl font-bold">DK</div>
+            <button id="menu-toggle" class="md:hidden text-white">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <div id="nav-links" class="hidden w-full md:flex md:flex-row md:justify-between md:items-center">
+            <nav class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-sm md:mr-8">
+                <!-- Links updated to point to all pages -->
+                <a href="index.html" class="hover:text-red-500 transition-colors">Home</a>
+                <a href="services.html" class="hover:text-red-500 transition-colors">Services</a>
+                <a href="#" class="hover:text-red-500 transition-colors font-bold text-red-500">Business</a>
+                <a href="photography.html" class="hover:text-red-500 transition-colors">Galary</a>
+                <a href="contact.html" class="hover:text-red-500 transition-colors">Contact</a>
+            </nav>
+            <div class="flex space-x-4 text-gray-400 mt-4 md:mt-0">
+                <a href="https://www.facebook.com/share/1PTR4jbvTV/" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/devidu-kaveesha-1a3351218/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/devidu_kaveesha?utm_source=qr&igsh=MTNlYnprNjJjbHNvMw==" class="hover:instagram" ><i class="fab fa-instagram"></i></a>
+                <!--  <a href="#" class="hover:youtube" ><i class="fab fa-youtube"></i></a>  -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Spacer for the fixed navigation -->
+    <div class="h-20 md:h-24"></div>
+
+    <!-- Main Gallery Section -->
+    <!-- Added a semi-transparent overlay to ensure text readability -->
+    <main class="py-20 px-8 min-h-screen bg-black bg-opacity-70">
+        <section id="gallery-detailed" class="max-w-6xl mx-auto animate-on-scroll">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">My business</h1>
+                <!-- <p class="text-xl text-gray-400 max-w-2xl mx-auto"></p> -->
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gallery Item 1 -->
+                <div class="bg-black rounded-xl shadow-lg overflow-hidden animated-box-link">
+                    <img src="ALL HALL.jpg" alt="ALL HALL" class="w-full h-auto">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">ALL HALL</h3>
+                        <p class="text-gray-400">ALL IN ONE HALL</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="bg-black rounded-xl shadow-lg overflow-hidden animated-box-link">
+                    <img src="geeth bags.png" alt="Geeth bags" class="w-full h-auto">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Geeth bags</h3>
+                        <p class="text-gray-400">Bag Shop</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="bg-black rounded-xl shadow-lg overflow-hidden animated-box-link">
+                    <img src="r3d shade.jpg" alt="R3D SHADE" class="w-full h-auto">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">R3D SHADE</h3>
+                        <p class="text-gray-400">Music</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 
+                <div class="bg-black rounded-xl shadow-lg overflow-hidden animated-box-link">
+                    <img src="pic.jpg" alt="DK" class="w-full h-auto">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">UI/UX Design</h3>
+                        <p class="text-gray-400"></p>
+                    </div>
+                </div>-->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Identical to main page) -->
+    <footer class="dark-section py-8 px-8 text-center text-gray-400">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2024 Devidu Kaveesha. All Rights Reserved.</p>
+            <div class="flex space-x-4 text-gray-400 mt-4 md:mt-0">
+                <a href="https://www.facebook.com/share/1PTR4jbvTV/" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/devidu-kaveesha-1a3351218/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/devidu_kaveesha?utm_source=qr&igsh=MTNlYnprNjJjbHNvMw==" class="hover:instagram" ><i class="fab fa-instagram"></i></a>
+                <!--  <a href="#" class="hover:youtube" ><i class="fab fa-youtube"></i></a>  -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll-based animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Toggle the visibility of the nav links on mobile
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                if (navLinks.classList.contains('hidden')) {
+                    navLinks.classList.remove('hidden');
+                    navLinks.classList.add('flex', 'flex-col');
+                } else {
+                    navLinks.classList.add('hidden');
+                    navLinks.classList.remove('flex', 'flex-col');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
