@@ -68,6 +68,10 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .header-logo {
+            width: 48px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +79,9 @@
     <!-- Fixed Navigation Bar -->
     <div class="fixed top-0 left-0 w-full flex flex-col md:flex-row justify-between items-center px-8 py-4 bg-black bg-opacity-50 backdrop-blur-sm z-50 transition-all duration-300">
         <div class="w-full flex justify-between items-center mb-4 md:mb-0">
-            <div class="text-3xl font-bold">DK</div>
+            <a href="/" class="logo-link">
+              <img src="/white-logo.png" alt="DK White Logo" class="header-logo">
+            </a>
             <button id="menu-toggle" class="md:hidden text-white">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
@@ -205,4 +211,5 @@
     </script>
 </body>
 </html>
+
 
